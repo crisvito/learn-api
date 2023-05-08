@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Helpers\ApiResponse;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SiswaRequest;
-// use App\Http\Requests\SiswaRequest;
 use App\Models\Siswa;
 
 use Exception;
@@ -39,7 +37,7 @@ class SiswaController extends Controller
             Siswa::create($validated);
             return ApiResponse::createApi(200, 'berhasil', $validated);
         } catch (Exception $error) {
-            return ApiResponse::createApi(400, $error);
+            return ApiResponse::createApi(400, $error->getMessage());
         }
     }
 
@@ -70,7 +68,7 @@ class SiswaController extends Controller
             Siswa::where('id', $id)->update($validated);
             return ApiResponse::createApi(200, 'berhasil', $validated);
         } catch (Exception $error) {
-            return ApiResponse::createApi(400, $error);
+            return ApiResponse::createApi(400, $error->getMessage());
         }
     }
 
